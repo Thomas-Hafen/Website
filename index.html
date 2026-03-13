@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link id="favicon" rel="icon" type="image/png">
+    <meta name="theme-color" id="theme-meta" content="#ffffff">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Furniture</title>
@@ -31,33 +32,28 @@
 
 <script>
 const favicon = document.getElementById('favicon');
-const canvas = document.createElement('canvas');
-canvas.width = 32;
-canvas.height = 32;
-const ctx = canvas.getContext('2d');
+const themeMeta = document.getElementById('theme-meta');
 
-let step = 0;
-const fps = 15; // Lowering the FPS stops the stuttering
-const interval = 1000 / fps;
+// State 1: Black dot on White background
+const stateNormal = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="white"/><circle cx="50" cy="50" r="40" fill="black"/></svg>';
 
-function drawFavicon() {
-    // Smooth sine wave for the fade
-    const colorValue = Math.floor((Math.sin(step) + 1) * 127.5);
-    const color = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+// State 2: White dot on Black background (The Inversion)
+const stateInverted = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="black"/><circle cx="50" cy="50" r="40" fill="white"/></svg>';
 
-    ctx.clearRect(0, 0, 32, 32);
-    ctx.beginPath();
-    ctx.arc(16, 16, 14, 0, Math.PI * 2);
-    ctx.fillStyle = color;
-    ctx.fill();
+let isInverted = false;
 
-    favicon.href = canvas.toDataURL('image/png', 0.5); // Lower quality = faster processing
+function toggleInversion() {
+    isInverted = !isInverted;
     
-    step += 0.1; // Speed of the pulse
+    // Update Tab Icon
+    favicon.href = isInverted ? stateInverted : stateNormal;
+    
+    // Update Browser UI Color (Register Card)
+    themeMeta.content = isInverted ? "#000000" : "#ffffff";
 }
 
-// Using setInterval instead of requestAnimationFrame for the tab icon
-setInterval(drawFavicon, interval);
+// Toggle every 800ms for a sharp, intentional blink
+setInterval(toggleInversion, 800);
     
     const text = "We are a community-driven furniture design collective, crafting simple, functional pieces that anyone can build, modify, and share. Our open-source approach means every design is freely available—download the plans, source local materials, and create furniture tailored to your space. No middlemen, no markup, just honest craftsmanship and sustainable design made accessible to everyone.";
     
