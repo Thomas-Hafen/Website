@@ -37,30 +37,27 @@ canvas.height = 32;
 const ctx = canvas.getContext('2d');
 
 let step = 0;
+const fps = 15; // Lowering the FPS stops the stuttering
+const interval = 1000 / fps;
 
-function animateFavicon() {
-    // 1. Calculate color (0 = black, 255 = white)
-    // We use Math.sin to create a smooth wave/pulse
+function drawFavicon() {
+    // Smooth sine wave for the fade
     const colorValue = Math.floor((Math.sin(step) + 1) * 127.5);
     const color = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
 
-    // 2. Clear canvas and draw the circle
     ctx.clearRect(0, 0, 32, 32);
     ctx.beginPath();
     ctx.arc(16, 16, 14, 0, Math.PI * 2);
     ctx.fillStyle = color;
     ctx.fill();
 
-    // 3. Update the favicon link
-    favicon.href = canvas.toDataURL('image/png');
-
-    // 4. Increment the step (adjust 0.05 to change speed)
-    step += 0.05;
-    requestAnimationFrame(animateFavicon);
+    favicon.href = canvas.toDataURL('image/png', 0.5); // Lower quality = faster processing
+    
+    step += 0.1; // Speed of the pulse
 }
 
-// Start the animation
-animateFavicon();
+// Using setInterval instead of requestAnimationFrame for the tab icon
+setInterval(drawFavicon, interval);
     
     const text = "We are a community-driven furniture design collective, crafting simple, functional pieces that anyone can build, modify, and share. Our open-source approach means every design is freely available—download the plans, source local materials, and create furniture tailored to your space. No middlemen, no markup, just honest craftsmanship and sustainable design made accessible to everyone.";
     
