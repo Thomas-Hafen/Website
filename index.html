@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link id="favicon" rel="icon" type="image/png">
-    <meta name="theme-color" id="theme-meta" content="#ffffff">
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="white" stroke="black" stroke-width="2"/></svg>'>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Furniture</title>
@@ -31,29 +30,6 @@
     </main>
 
 <script>
-const favicon = document.getElementById('favicon');
-const themeMeta = document.getElementById('theme-meta');
-
-// State 1: Black dot on White background
-const stateNormal = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="white"/><circle cx="50" cy="50" r="40" fill="black"/></svg>';
-
-// State 2: White dot on Black background (The Inversion)
-const stateInverted = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="black"/><circle cx="50" cy="50" r="40" fill="white"/></svg>';
-
-let isInverted = false;
-
-function toggleInversion() {
-    isInverted = !isInverted;
-    
-    // Update Tab Icon
-    favicon.href = isInverted ? stateInverted : stateNormal;
-    
-    // Update Browser UI Color (Register Card)
-    themeMeta.content = isInverted ? "#000000" : "#ffffff";
-}
-
-// Toggle every 800ms for a sharp, intentional blink
-setInterval(toggleInversion, 800);
     
     const text = "We are a community-driven furniture design collective, crafting simple, functional pieces that anyone can build, modify, and share. Our open-source approach means every design is freely available—download the plans, source local materials, and create furniture tailored to your space. No middlemen, no markup, just honest craftsmanship and sustainable design made accessible to everyone.";
     
