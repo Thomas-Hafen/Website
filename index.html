@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link id="favicon" rel="icon" type="image/svg+xml" href="">
+    <link id="favicon" rel="icon" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Furniture</title>
@@ -30,21 +30,38 @@
     </main>
 
 <script>
-        // 1. Define the SVG icons as Data URIs
-const blackDot = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="black"/></svg>';
-const emptyDot = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"></svg>';
-
 const favicon = document.getElementById('favicon');
-let isDotVisible = true;
+const canvas = document.createElement('canvas');
+canvas.width = 32;
+canvas.height = 32;
+const ctx = canvas.getContext('2d');
 
-// 2. Function to toggle the icon
-function blinkFavicon() {
-    favicon.href = isDotVisible ? blackDot : emptyDot;
-    isDotVisible = !isDotVisible;
+let step = 0;
+
+function animateFavicon() {
+    // 1. Calculate color (0 = black, 255 = white)
+    // We use Math.sin to create a smooth wave/pulse
+    const colorValue = Math.floor((Math.sin(step) + 1) * 127.5);
+    const color = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+
+    // 2. Clear canvas and draw the circle
+    ctx.clearRect(0, 0, 32, 32);
+    ctx.beginPath();
+    ctx.arc(16, 16, 14, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+
+    // 3. Update the favicon link
+    favicon.href = canvas.toDataURL('image/png');
+
+    // 4. Increment the step (adjust 0.05 to change speed)
+    step += 0.05;
+    requestAnimationFrame(animateFavicon);
 }
 
-// 3. Start the blink (every 1000ms to match your CSS cursor)
-setInterval(blinkFavicon, 1000);
+// Start the animation
+animateFavicon();
+    
     const text = "We are a community-driven furniture design collective, crafting simple, functional pieces that anyone can build, modify, and share. Our open-source approach means every design is freely available—download the plans, source local materials, and create furniture tailored to your space. No middlemen, no markup, just honest craftsmanship and sustainable design made accessible to everyone.";
     
     const speed =5; // Milliseconds between letters
