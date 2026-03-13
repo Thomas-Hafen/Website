@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link id="favicon" rel="icon" type="image/svg+xml" href="">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Source Furniture Collective</title>
@@ -29,6 +30,21 @@
     </main>
 
 <script>
+        // 1. Define the SVG icons as Data URIs
+const blackDot = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="black"/></svg>';
+const emptyDot = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"></svg>';
+
+const favicon = document.getElementById('favicon');
+let isDotVisible = true;
+
+// 2. Function to toggle the icon
+function blinkFavicon() {
+    favicon.href = isDotVisible ? blackDot : emptyDot;
+    isDotVisible = !isDotVisible;
+}
+
+// 3. Start the blink (every 1000ms to match your CSS cursor)
+setInterval(blinkFavicon, 1000);
     const text = "We are a community-driven furniture design collective, crafting simple, functional pieces that anyone can build, modify, and share. Our open-source approach means every design is freely available—download the plans, source local materials, and create furniture tailored to your space. No middlemen, no markup, just honest craftsmanship and sustainable design made accessible to everyone.";
     
     const speed =5; // Milliseconds between letters
