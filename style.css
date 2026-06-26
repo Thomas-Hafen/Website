@@ -9,6 +9,9 @@ body {
     /* Updated to Consolas */
     font-family: 'Consolas', 'Monaco', 'Lucida Console', 'Courier New', monospace;
     background-color: #f0eee9;
+    background-image:url('https://static.vecteezy.com/system/resources/previews/012/877/772/large_2x/beauty-white-cloud-and-clear-blue-sky-in-sunny-day-texture-background-copy-space-for-banner-or-wallpaper-design-text-free-photo.JPG');
+    background-repeat:no-repeat;
+    background-attachment: fixed;
     color: #1a1a1a;
     line-height: 1.6;
 }
