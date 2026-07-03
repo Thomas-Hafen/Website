@@ -5,6 +5,7 @@ html {
 }
 body {
   font-family: 'Avenir', sans-serif;
+  color-scheme: light dark;
 }
 
 .sidenav {
@@ -14,7 +15,7 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color:rgba(0, 0, 0, 0.3);
+  background-color:rgba(50, 50, 50, 0.3);
   backdrop-filter: blur(10px);
   overflow-x: hidden;
   transition: 0.5s;
@@ -25,13 +26,13 @@ body {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #F0EEE9;
+  color: light-dark(black,#F0EEE9);
   display: block;
   transition: 0.3s;
 }
 
 .sidenav a:hover {
-  color: #f1f1f1;
+  color: light-dark(crimson, coral);
 }
 
 .sidenav .closebtn {
@@ -53,18 +54,17 @@ body {
 }
 
 body {
-    /* Updated to Consolas */
     font-family: 'Avenir', sans-serif;
-    background-image:url('backgroundwbsite.jpg');
-    background-size:cover;
+    background-color:light-dark(#F0EEE9,#1a1a1a);
     background-repeat:no-repeat;
     background-attachment: fixed;
-    color: #1a1a1a;
+    background-position: center;
+    color:light-dark(black,#F0EEE9);
     line-height: 1.6;
 }
 
 a {
-    color: #1a1a1a;
+    color:light-dark(black,#F0EEE9);
     text-decoration: none;
 }
 
@@ -92,7 +92,7 @@ h1 {
 
 header {
     padding: 4rem 0;
-    border-bottom: 3px solid #263a53;
+    border-bottom: 3px solid light-dark(black,#F0EEE9);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -139,12 +139,12 @@ header {
     font-weight: 300;
     font-style: italic;
     text-align: center;
-    color: #555555;
+    color: light-dark(black,#F0EEE9);
 }
 
 /* Footer & Contact Info */
 footer {
-    border-top: 3px solid #263a53;
+    border-top: 3px solid light-dark(black,#F0EEE9);
     padding: 5rem 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -156,7 +156,7 @@ footer {
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #1a1a1a;
+    color: light-dark(black,#F0EEE9);
     margin-bottom: 1rem;
     font-weight: 500;
 }
